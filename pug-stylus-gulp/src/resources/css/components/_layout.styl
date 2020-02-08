@@ -1,0 +1,57 @@
+/* ==========================================================================*/
+/* layout */
+/* ==========================================================================*/
+.l_contents
+  position relative
+.l_commonWrap01
+  width 100%
+  +mediaPc()
+    min-width 1240px
+
+.l_commonInner01
+  width 100%
+  margin-left auto
+  margin-right auto
+  +mediaPc()
+    padding-left 20px
+    padding-right 20px
+  +mediaSp()
+    box-sizing border-box
+    padding-left 20px
+    padding-right 20px
+    &--sp100
+      padding-left 0
+      padding-right 0
+
+
+/* ==========================================================================*/
+/* margin padding system */
+/* ==========================================================================*/
+
+for i in 0..10
+  .mt{i*5}
+    margin-top 5px * i
+  .mb{i*5}
+    margin-bottom 5px * i
+  .pt{i*5}
+    padding-top 5px * i
+  .pb{i*5}
+    padding-bottom 5px*i
+
+.mt30-15
+  mt-h(30px)
+.pt30-15
+  pt-h(30px)
+.mb30-15
+  mb-h(30px)
+.pb30-15
+  pb-h(30px)
+
+.mt40-20
+  mt-h(40px)
+.pt40-20
+  pt-h(40px)
+.mb40-20
+  mb-h(40px)
+.pb40-20
+  pb-h(40px)

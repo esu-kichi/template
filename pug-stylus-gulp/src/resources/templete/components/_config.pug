@@ -1,0 +1,29 @@
+- var image_path = '/resources/images'
+- var css_path = '/resources/css'
+- var js_path = '/resources/js'
+
+-
+  var pages = {
+    top : {
+      title : 'トップページ',
+      titleType : 'top',
+      description : '',
+      keywords : '',
+      bodyClass : 't_top',
+      templateType : 'top',
+    },
+    dummy : {
+      title : '', // medaタイトル
+      titleType : 'top', // タイトルの接尾辞タイプ。top（トップページ）｜lower（下層ページ）
+      description : '', // medaディスクリプション
+      keywords : '', // metaキーワード
+      bodyClass : '', // bodyにclass付与をしたい場合はこちらに記述
+      templateType : 'lower', // テンプレートのタイプ。top（トップページ）｜lower（下層ページ）
+      breadcrumbs : {
+        'トップ' : '/', // パンくずのネスト構造をこちらに記述。currentページの記述はいりません。
+        'パンくず1' : '/hogehoge/',
+      },
+      currentUrl: '/dummy/',// 現在地のurl（パンくずの構造化に必要です）
+      currentbreadcrumb : 'ページタイトルとパンくずが違う場合用', // パンくず名がページタイトルと違う場合はこちらに記述
+    },
+  }

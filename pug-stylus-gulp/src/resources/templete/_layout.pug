@@ -1,0 +1,32 @@
+doctype html
+block vars
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="format-detection" content="telephone=no")
+    link(rel="canonical" href=page.canonical)
+    link(rel="shortcut icon" href="/resources/images/favicon.ico" type="image/vnd.microsoft.icon")
+    link(rel="apple-touch-icon-precomposed" href="/resources/images/webclip.png")
+
+    if page.titleType === "top"
+      title #{page.title}
+    else if page.titleType === "lower"
+      title #{page.title}｜下層タイトル
+
+    meta( name="description" content=page.description)
+    meta(name="keywords" content=page.keywords)
+    meta(name="robots" content="ALL")
+
+    link(rel="stylesheet" href=css_path+"/style.css")
+
+  body(class=page.bodyClass)
+    include components/_header.pug
+
+    .l_contents
+      block contents
+
+    include components/_footer.pug
+
+    script(src=js_path+"/app.js")

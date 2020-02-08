@@ -1,0 +1,34 @@
+- var url = 'https://example.com/'
+- var breadcrumb = page.breadcrumbs
+- var breadcrumbNum = 1
+//- json用カウント
+- var breadcrumbNumJson = 1
+if url == 'https://example.com/'
+  p 変数urlを設定してね
+else
+  if breadcrumb != null
+    //- パンくず総数用カウント
+    - var breadcrumbLength = 1
+    each val, index in breadcrumb
+      - breadcrumbLength++
+    .m_breadCrumb(class=page.breadCrumbsClass)
+      ol
+        each val, index in breadcrumb
+          li
+            a(href=val)
+              span= index
+        if page.currentbreadcrumb != null
+          li
+            strong #{page.currentbreadcrumb}
+        else
+          li
+            strong #{page.title}
+    script(type="application/ld+json")
+      | {"@context": "http://schema.org","@type": "BreadcrumbList","itemListElement": [
+      each val, index in breadcrumb
+        | {"position": #{breadcrumbNumJson++},"@type": "ListItem","item": { "@id": "#{url}#{val}", "name": "#{index}"}},
+      if page.currentbreadcrumb != null
+        | {"position": #{breadcrumbNumJson},"@type": "ListItem","item": { "@id": "#{url}#{page.currentUrl}", "name": "#{page.currentbreadcrumb}"}}
+      else
+        | {"position": #{breadcrumbNumJson},"@type": "ListItem","item": { "@id": "#{url}#{page.currentUrl}", "name": "#{page.title}"}}
+      | ]}

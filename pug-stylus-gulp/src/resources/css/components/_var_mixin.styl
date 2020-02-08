@@ -1,0 +1,152 @@
+// ==========================================================================
+// var
+// ==========================================================================
+directory = 'kaigo' // ここでソースディレクトリを指定
+fontset-min = "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "ＭＳ Ｐ明朝", "MS PMincho", "ＭＳ 明朝"
+fontset-gothic = "Lucida Grande", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, "メイリオ", sans-serif
+fontset-marugo = "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO"
+breakPoint = 736px
+text01 = #020100 // 通常文字色
+text02 = #a3a3a3 // 通常テキストグレー
+text03 = #bfbfbf //placeholder
+text04 = #80807f
+themeWhite = #fff
+
+themeColor01 = #cfe8f7 // 薄い背景色
+themeColor02 = #edf1f4 // 背景色薄いグレー
+themeColor03 = lighten(themeColor02, 50%)
+themeColor04 = #136192 // タイトル文字
+themeColor05 = #4cace8 // リンク
+themeColor06 = #a0d1f0 // 薄いテーマカラー
+themeColor07 = #e89300 // エントリー・無料
+themeColor08 = #a9d6f1 // spアコーディオン
+themeColor09 = lighten(#a9d6f1, 80%) // spセクション背景
+themeColor10 = #f6f8f9 // リンク背景グレー
+themeColor11 = lighten(themeColor06, 50%) // 薄いテーマカラー50%
+themeColor12 = lighten(themeColor06, 80%) // 薄いテーマカラー20%
+themeColor13 = lighten(themeColor08, 10%) // 薄いテーマカラー20%
+themeColor14 = lighten(themeColor04, 50%) // 薄いタイトル50%
+themeColor15 = rgba(themeColor02, 0.2) // 薄いグレー20%
+themeColor16 = #fffeed // 背景色クリーム
+themeColor17 = rgba(themeColor02, 0.2) // 薄いグレー20%
+themeColor18 = #ed7aa1 // 面接対策用ピンク色
+
+line01 = #e1e1e1 // ライングレー
+line02 = #2190d5 //エントリーリンク
+line03 = #e56701 //エントリーリンク
+
+ico01 = #5d5d5f
+
+checkbox01 = #ccc //フレームのボーダー色
+
+shadow01 = rgba(0,0,0,0.05) // 影
+sliderControl01= themeColor08
+
+if env
+  image_path = '/resources/images'
+  css_path = '/resources/css'
+  js_path = '/resources/js'
+else
+  image_path = '/' + directory + '/resources/images'
+  css_path = '/' + directory + '/resources/css'
+  js_path = '/' + directory + '/resources/js'
+
+// ==========================================================================
+// mixin
+// ==========================================================================
+
+
+//カーニング自動調整
+kerning()
+  -webkit-font-feature-settings "pkna"
+  font-feature-settings "pkna"
+  letter-spacing 0.03em
+
+//メディアクエリ
+mediaSp()
+  @media only screen and (max-width breakPoint)
+    {block}
+mediaPc()
+  @media print, screen and (min-width breakPoint + 1)
+    {block}
+media(responsive)
+  @media only screen and (max-width responsive)
+    {block}
+
+//フォントずれIEハック
+ieHeight(ieHeight)
+  @media all and (-ms-high-contrast: none)
+    line-height ieHeight
+    *::-ms-backdrop
+      line-height ieHeight
+  &:not(:target)
+    line-height ieHeight + \9
+
+// clearfix
+clearfix()
+  &:after
+    content "."
+    display block
+    clear both
+    height 0
+    visibility hidden
+
+//gradient
+gradient(gradient1, gradientStart, gradient2, gradientEnd)
+  background linear-gradient(to bottom, gradient1 gradientStart, gradient2 gradientEnd)
+
+//フォントファミリー
+min()
+  font-family fontset-mincho
+gothic()
+  font-family fontset-gothic
+marugo()
+  font-family fontset-marugo
+
+//ボタンのデザインリセット
+inputReset()
+  border-radius: 0
+  -webkit-box-sizing: content-box
+  -webkit-appearance: none
+  appearance: none
+  border: none
+  box-sizing: border-box
+  &::-webkit-search-decoration
+    display: none
+  &::focus
+    outline-offset: -2px
+
+// レスポンシブの縦余白指定
+mt-h(mth)
+  margin-top mth
+  +mediaSp()
+    margin-top mth * 0.5
+pt-h(pth)
+  padding-top pth
+  +mediaSp()
+    padding-top pth * 0.5
+mb-h(mbh)
+  margin-bottom mbh
+  +mediaSp()
+    margin-bottom mbh * 0.5
+pb-h(pbh)
+  padding-bottom pbh
+  +mediaSp()
+    padding-bottom pbh * 0.5
+
+mt(mtpc, mtsp)
+  margin-top mtpc
+  +mediaSp()
+    margin-top mtsp
+mb(mbpc, mbsp)
+  margin-bottom mbpc
+  +mediaSp()
+    margin-bottom mbsp
+pt(ptpc, ptsp)
+  margin-top ptpc
+  +mediaSp()
+    margin-top ptsp
+pb(pbpc, pbsp)
+  margin-top pbpc
+  +mediaSp()
+    margin-top pbsp
